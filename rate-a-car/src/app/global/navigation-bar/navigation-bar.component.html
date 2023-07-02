@@ -1,0 +1,13 @@
+<div class="navigation">
+  <div class="navigation__logo">
+    <img src="../../../assets/logos/cars-removebg-preview.png" alt="logo" width="130px" height="65px">
+  </div>
+  <div class="navigation__menu">
+    <div
+     class="navigation__menu__item c-pointer"
+     *ngFor="let item of menuItem | sortBy: 'order'"
+     [routerLink]="item.route"
+     
+    >{{ item.label }}</div>
+  </div>
+</div>

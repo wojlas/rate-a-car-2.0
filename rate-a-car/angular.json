@@ -3,29 +3,27 @@
   "version": 1,
   "newProjectRoot": "projects",
   "schematics": {
-    "@schematics/angular": {
-      "component": {
-        "spec": false
+    "@schematics/angular:component": {
+        "skipTests": true
       },
         "@schematics/angular:class": {
-        "spec": false
+        "skipTests": true
       },
       "@schematics/angular:directive": {
-        "spec": false
+        "skipTests": true
       },
       "@schematics/angular:guard": {
-        "spec": false
+        "skipTests": true
       },
       "@schematics/angular:module": {
-        "spec": false
+        "skipTests": true
       },
       "@schematics/angular:pipe": {
-        "spec": false
+        "skipTests": true
       },
       "@schematics/angular:service": {
-        "spec": false
+        "skipTests": true
       }
-    }
   },
   "projects": {
     "rate-a-car": {
