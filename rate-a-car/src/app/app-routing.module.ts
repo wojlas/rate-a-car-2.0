@@ -1,20 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LandingPageComponent } from './global/landing-page/landing-page.component';
 
 const routes: Routes = [
   {
+    path: 'home',
+    loadChildren: () => import('./landing/landing.module').then(m => m.LandingModule),
+  },
+  {
+    path: 'car-browser',
+    loadChildren: () => import('./car-browser/car-browser.module').then(m => m.CarBrowserModule),
+  },
+  {
+    path: 'user',
+    loadChildren: () => import('./user-space/user-space.module').then(m => m.UserSpaceModule)
+  },
+  {
     path: '',
-    children: [
-      {
-        path: 'home',
-        component: LandingPageComponent
-      },
-      {
-        path: '**',
-        redirectTo: 'home'
-      }
-    ]
+    redirectTo: 'home',
+    pathMatch: 'full'
   }
 ];
 

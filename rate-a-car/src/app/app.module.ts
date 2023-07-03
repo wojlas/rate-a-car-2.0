@@ -5,8 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { UiModule } from './ui/ui.module';
-import { GlobalModule } from './global/global.module';
 import { RouterModule } from '@angular/router';
+import { LandingModule } from './landing/landing.module';
 
 @NgModule({
   declarations: [
@@ -17,13 +17,12 @@ import { RouterModule } from '@angular/router';
     AppRoutingModule,
     CoreModule,
     UiModule,
-    GlobalModule,
-    RouterModule
+    RouterModule,
+    LandingModule
   ],
   exports: [
     CoreModule,
     UiModule,
-    GlobalModule
   ],
   providers: [],
   bootstrap: [AppComponent]
