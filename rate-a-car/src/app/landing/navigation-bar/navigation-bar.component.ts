@@ -1,5 +1,6 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription, fromEvent, map, pluck } from 'rxjs';
 import { IMainMenuItem } from 'src/app/core/interfaces';
 
 @Component({
@@ -50,10 +51,35 @@ export class NavigationBarComponent {
 
   ];
 
-  constructor(private readonly _router: Router) {}
+  private _sub$?: Subscription;
+
+  constructor(private readonly _router: Router, private readonly _cdr: ChangeDetectorRef) {}
+
+  public openMobileDropdown(): void {
+    this.isDropdownOpen = true;
+    
+    this._sub$ = fromEvent(document, 'click').pipe(
+      map((res: Event) => {
+        const target = res.target as HTMLElement;
+        return target.className === 'icon-menu';
+      }
+    )).subscribe((res: boolean) => {
+      this.toggleDropdown(res);
+    });
+  }
 
   public navigateToRoute(route: string): void {
-    this.isDropdownOpen = false;
+    this.toggleDropdown(false);
     this._router.navigate([route]);
+  }
+
+  private toggleDropdown(value: boolean): void {
+    this.isDropdownOpen = value;
+
+    if (!value) {
+      this._sub$?.unsubscribe();
+    }
+    
+    this._cdr.detectChanges();
   }
 }

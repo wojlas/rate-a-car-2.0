@@ -11,8 +11,8 @@
     >{{ item.label }}</div>
   </div>
   <div class="navigation__hamburger">
-    <i class="icon-menu" (click)="isDropdownOpen = !isDropdownOpen"></i>
-    <div class="mobile-dropdown-list {{isDropdownOpen}}" *ngIf="isDropdownOpen">
+    <i class="icon-menu" (click)="openMobileDropdown()"></i>
+    <div class="mobile-dropdown-list" *ngIf="isDropdownOpen">
       <div
         class="mobile-dropdown-list__item"
         *ngFor="let item of menuItem | sortBy: 'order'"
