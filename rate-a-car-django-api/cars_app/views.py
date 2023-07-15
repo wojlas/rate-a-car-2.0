@@ -5,6 +5,7 @@ from rest_framework import status
 from .serializers import BrandSerializer, CarModelsSerializer
 
 from .models import Brand, CarModel
+from rateACarApi.global_methods import throw200, throw500
 
 class BrandView(APIView):
     def get(self, request):
@@ -13,15 +14,25 @@ class BrandView(APIView):
         serializer = BrandSerializer(queryset, many=True)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
-      except:
+      except Brand.DoesNotExist:
         return Response(serializer.errors, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-    
-class CarModelView(APIView):
-    def get(self, request):
+      
+class GetCarModels(APIView):
+   def get(self, request):
       try:
-        queryset = CarModel.objects.all()
+         queryset = CarModel.objects.all()
+         serializer = CarModelsSerializer(queryset, many=True)
+
+         return Response(serializer.data, status=throw200())
+      except CarModel.DoesNotExist:
+         return Response(serializer.errors, status=throw500())
+    
+class CarModelByBrandView(APIView):
+    def get(self, request, id):
+      try:
+        queryset = CarModel.objects.filter(brand_id = id)
         serializer = CarModelsSerializer(queryset, many=True)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
-      except:
+      except CarModel.DoesNotExist:
         return Response(serializer.errors, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

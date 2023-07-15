@@ -7,6 +7,8 @@ import { CoreModule } from './core/core.module';
 import { UiModule } from './ui/ui.module';
 import { RouterModule } from '@angular/router';
 import { LandingModule } from './landing/landing.module';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ApiInterceptor } from './core/interceptors/api-interceptor';
 
 @NgModule({
   declarations: [
@@ -18,13 +20,21 @@ import { LandingModule } from './landing/landing.module';
     CoreModule,
     UiModule,
     RouterModule,
-    LandingModule
+    LandingModule,
+    HttpClientModule
   ],
   exports: [
     CoreModule,
     UiModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
