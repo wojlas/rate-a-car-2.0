@@ -1,17 +1,10 @@
-<div style="display: flex; flex-direction: row;">
-  <div style="display: flex; flex-direction: column;">
-    <ng-container *ngIf="brands$ | async as brands">
-      <p *ngFor="let brand of brands">
-        {{ brand.name }}
-      </p>
+<div class="car-list-container">
+  <div class="car-list-container__brand-list">
+    <ng-container *ngIf="brands$ | async as bradsList">
+      <app-brand-tile
+        *ngFor="let brand of bradsList | sortBy : 'name'"
+        [brand]="brand"
+      ></app-brand-tile>
     </ng-container>
   </div>
-  <div style="display: flex; flex-direction: column;">
-    <ng-container *ngIf="models$ | async as models">
-      <p *ngFor="let model of models">
-        {{ model.name }}
-      </p>
-    </ng-container>
-  </div>
-
 </div>

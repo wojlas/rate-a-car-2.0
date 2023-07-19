@@ -12,9 +12,9 @@ class BrandView(APIView):
         queryset = Brand.objects.all()
         serializer = BrandSerializer(queryset, many=True)
 
-        return Response(serializer.data, status=throw200)
+        return Response(serializer.data, status=throw200())
       except Brand.DoesNotExist:
-        return Response(serializer.errors, status=throw500)
+        return Response(serializer.errors, status=throw500())
       
 class GetCarModels(APIView):
    def get(self, request):
@@ -32,6 +32,6 @@ class CarModelByBrandView(APIView):
         queryset = CarModel.objects.filter(brand_id = id)
         serializer = CarModelsSerializer(queryset, many=True)
 
-        return Response(serializer.data, status=throw200)
+        return Response(serializer.data, status=throw200())
       except CarModel.DoesNotExist:
-        return Response(serializer.errors, status=throw500)
+        return Response(serializer.errors, status=throw500())

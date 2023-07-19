@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CarListComponent } from './pages/car-list/car-list.component';
 import { CarBrowserRoutingModule } from './car-browser-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { UiModule as CarBrowserUiModule } from './ui/ui.module';
+import { CoreModule } from '../core/core.module';
 
 
 
@@ -13,6 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     CarBrowserRoutingModule,
+    CarBrowserUiModule,
+    CoreModule
   ]
 })
 export class CarBrowserModule { }

@@ -26,7 +26,58 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-pencil:before {
+  content: "\e906";
+}
+.icon-images:before {
+  content: "\e90e";
+}
+.icon-upload:before {
+  content: "\e934";
+}
+.icon-user:before {
+  content: "\e971";
+}
+.icon-users:before {
+  content: "\e972";
+}
+.icon-equalizer:before {
+  content: "\e993";
+}
+.icon-bin:before {
+  content: "\e9ac";
+}
 .icon-menu:before {
   content: "\e9bd";
+}
+.icon-star-empty:before {
+  content: "\e9d7";
+}
+.icon-star-full:before {
+  content: "\e9d9";
+}
+.icon-smile:before {
+  content: "\e9e1";
+}
+.icon-sad:before {
+  content: "\e9e5";
+}
+.icon-warning:before {
+  content: "\ea07";
+}
+.icon-notification:before {
+  content: "\ea08";
+}
+.icon-cancel-circle:before {
+  content: "\ea0d";
+}
+.icon-blocked:before {
+  content: "\ea0e";
+}
+.icon-cross:before {
+  content: "\ea0f";
+}
+.icon-checkmark:before {
+  content: "\ea10";
 }
 
