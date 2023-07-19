@@ -28,4 +28,8 @@ export class CarListComponent extends GlobalComponentTools implements OnInit {
     );
   }
 
+  public filterByBrand(id: number): void {
+    this.models$ = this._carBrowserSrvice.getModelsByBrand(id);
+  }
+
 }

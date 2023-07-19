@@ -4,7 +4,11 @@
       <app-brand-tile
         *ngFor="let brand of bradsList | sortBy : 'name'"
         [brand]="brand"
+        (selectedBrand)="filterByBrand($event)"
       ></app-brand-tile>
     </ng-container>
   </div>
+  <ng-container *ngFor="let model of models$ | async">
+    <p>{{ model.name }}</p>
+  </ng-container>
 </div>

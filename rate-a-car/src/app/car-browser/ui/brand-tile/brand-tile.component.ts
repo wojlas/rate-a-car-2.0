@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { IIdAndName } from 'src/app/core/interfaces';
 
 @Component({
@@ -10,4 +10,5 @@ import { IIdAndName } from 'src/app/core/interfaces';
 })
 export class BrandTileComponent {
   @Input() brand!: IIdAndName;
+  @Output() selectedBrand = new EventEmitter<number>();
 }

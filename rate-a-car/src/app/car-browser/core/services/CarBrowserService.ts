@@ -16,4 +16,8 @@ export class CarBrowserService {
   public getModelsList(): Observable<any[]> {
     return this._api.get<any[]>('cars/randomModels');
   }
+
+  public getModelsByBrand(id: number): Observable<any[]> {
+    return this._api.get<any[]>(`cars/model/${ id }`);
+  }
 }
