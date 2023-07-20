@@ -1,0 +1,22 @@
+<div class="models-table-container">
+  <table class="models-table-container__table">
+    <thead class="models-table-container__table__header">
+      <tr class="models-table-container__table__header__row">
+        <td
+        class="models-table-container__table__header__row__cell"
+          *ngFor="let header of tableHeader | filterBy: 'isVisible' | sortBy: 'position'"
+          [style.width.px]="header.width"
+        >{{ header.name }}</td>
+      </tr>
+    </thead>
+    <tbody class="models-table-container__table__body">
+      <tr class="models-table-container__table__body__row" *ngFor="let model of models | sortBy: 'brandName'">
+        <td
+        class="models-table-container__table__body__row__cell c-pointer"
+         *ngFor="let header of tableHeader | filterBy: 'isVisible' | sortBy: 'position'"
+         [style.width.px]="header.width"
+        >{{ model | mapProperty: header.property | emptyDash }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

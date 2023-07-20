@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable, takeUntil } from 'rxjs';
 import { CarBrowserService } from '../../core/services/CarBrowserService';
 import { GlobalComponentTools } from 'src/app/core/abstraction/GlobalComponentTools';
-import { IIdAndName } from 'src/app/core/interfaces';
+import { ICarModel, IIdAndName } from 'src/app/core/interfaces';
 
 @Component({
   selector: 'app-car-list',
@@ -12,7 +12,7 @@ import { IIdAndName } from 'src/app/core/interfaces';
 })
 export class CarListComponent extends GlobalComponentTools implements OnInit {
   public brands$!: Observable<IIdAndName[]>;
-  public models$!: Observable<any[]>;
+  public models$!: Observable<ICarModel[]>;
 
   constructor(private readonly _carBrowserSrvice: CarBrowserService) {
     super();

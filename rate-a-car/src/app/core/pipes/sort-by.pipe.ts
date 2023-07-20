@@ -5,8 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SortByPipe implements PipeTransform {
 
-  transform(value: any[], property: string, isDescending = false): any[] {
-    return !isDescending ? value.sortByKey(property) : value.sortByKey(property).reverse();
+  transform<T>(value: T[], property: keyof T, isDescending = true): T[] {
+    return !isDescending ? value.sortByKey(property as string) : value.sortByKey(property as string).reverse();
   }
 
 }

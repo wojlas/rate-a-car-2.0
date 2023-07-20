@@ -8,7 +8,9 @@
       ></app-brand-tile>
     </ng-container>
   </div>
-  <ng-container *ngFor="let model of models$ | async">
-    <p>{{ model.name }}</p>
-  </ng-container>
+  <div class="car-list-container__model-table">
+    <ng-container *ngIf="models$ | async as models">
+      <app-car-models-table [models]="models"></app-car-models-table>
+    </ng-container>
+  </div>
 </div>

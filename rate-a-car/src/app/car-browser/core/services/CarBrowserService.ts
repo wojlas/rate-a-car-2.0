@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { IIdAndName } from 'src/app/core/interfaces';
+import { ICarModel, IIdAndName } from 'src/app/core/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +13,11 @@ export class CarBrowserService {
     return this._api.get<IIdAndName[]>('cars/brand/');
   }
 
-  public getModelsList(): Observable<any[]> {
-    return this._api.get<any[]>('cars/randomModels');
+  public getModelsList(): Observable<ICarModel[]> {
+    return this._api.get<ICarModel[]>('cars/randomModels');
   }
 
-  public getModelsByBrand(id: number): Observable<any[]> {
-    return this._api.get<any[]>(`cars/model/${ id }`);
+  public getModelsByBrand(id: number): Observable<ICarModel[]> {
+    return this._api.get<ICarModel[]>(`cars/model/${ id }`);
   }
 }
