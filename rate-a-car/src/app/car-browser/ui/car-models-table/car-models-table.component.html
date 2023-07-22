@@ -10,7 +10,11 @@
       </tr>
     </thead>
     <tbody class="models-table-container__table__body">
-      <tr class="models-table-container__table__body__row" *ngFor="let model of models | sortBy: 'brandName'">
+      <tr
+        routerLink="{{ model.id }}"
+        class="models-table-container__table__body__row"
+        *ngFor="let model of models | sortBy: 'brandName'"
+      >
         <td
         class="models-table-container__table__body__row__cell c-pointer"
          *ngFor="let header of tableHeader | filterBy: 'isVisible' | sortBy: 'position'"

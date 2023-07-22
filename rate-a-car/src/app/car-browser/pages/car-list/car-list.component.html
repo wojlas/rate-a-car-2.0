@@ -2,7 +2,7 @@
   <div class="car-list-container__brand-list">
     <ng-container *ngIf="brands$ | async as bradsList">
       <app-brand-tile
-        *ngFor="let brand of bradsList | sortBy : 'name'"
+        *ngFor="let brand of bradsList | sortBy : 'name': false: 'wszystkie'"
         [brand]="brand"
         (selectedBrand)="filterByBrand($event)"
       ></app-brand-tile>

@@ -4,18 +4,22 @@ import { CarListComponent } from './pages/car-list/car-list.component';
 import { CarBrowserRoutingModule } from './car-browser-routing.module';
 import { UiModule as CarBrowserUiModule } from './ui/ui.module';
 import { CoreModule } from '../core/core.module';
+import { CarModelDetailsComponent } from './pages/car-model-details/car-model-details.component';
+import { CarBrowserComponent } from './pages/car-browser/car-browser.component';
 
 
 
 @NgModule({
   declarations: [
-    CarListComponent
+    CarListComponent,
+    CarModelDetailsComponent,
+    CarBrowserComponent
   ],
   imports: [
     CommonModule,
     CarBrowserRoutingModule,
     CarBrowserUiModule,
-    CoreModule
+    CoreModule,
   ]
 })
 export class CarBrowserModule { }
