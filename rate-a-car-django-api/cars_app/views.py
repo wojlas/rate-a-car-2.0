@@ -17,7 +17,7 @@ class BrandView(APIView):
         return Response(serializer.errors, status=throw500())
       
 class GetCarModels(APIView):
-   def get(self, request):
+    def get(self, request):
       try:
          queryset = CarModel.objects.all()
          serializer = CarModelsSerializer(queryset, many=True)
@@ -25,6 +25,29 @@ class GetCarModels(APIView):
          return Response(serializer.data, status=throw200())
       except CarModel.DoesNotExist:
          return Response(serializer.errors, status=throw500())
+      
+    def post(self, request, format=None):
+      page_index = request.data.get('pageIndex', 1)
+      page_size = request.data.get('pageSize', 20)
+
+      start_index = (page_index - 1) * page_size
+      end_index = page_index * page_size
+      try:
+         query = CarModel.objects.all()[start_index:end_index]
+         total_count = CarModel.objects.count()
+
+         serializer = CarModelsSerializer(query, many=True)
+
+         response_data = {
+            'carModels': serializer.data,
+            'totalCount': total_count
+         }
+
+         return Response(response_data, status=throw200())
+         
+      except CarModel.DoesNotExist:
+         return Response(serializer.errors, status=throw500())
+
     
 class CarModelByBrandView(APIView):
     def get(self, request, id):

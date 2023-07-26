@@ -4,13 +4,19 @@
       <app-brand-tile
         *ngFor="let brand of bradsList | sortBy : 'name': false: 'wszystkie'"
         [brand]="brand"
-        (selectedBrand)="filterByBrand($event)"
       ></app-brand-tile>
     </ng-container>
   </div>
   <div class="car-list-container__model-table">
-    <ng-container *ngIf="models$ | async as models">
-      <app-car-models-table [models]="models"></app-car-models-table>
+    <ng-container *ngIf="models">
+      <app-car-models-table [models]="models.carModels"></app-car-models-table>
+      <app-pagination
+        [ngModel]="pageIndex"
+        [pageSize]="pageSize"
+        [fullResultCount]="models.totalCount"
+        (pageSizeListChange)="pageSizeChangeHandler($event)"
+        (ngModelChange)="pageIndexChange($event)"
+      ></app-pagination>
     </ng-container>
   </div>
 </div>

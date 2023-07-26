@@ -1,8 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Observable, map, of, tap } from 'rxjs';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Observable, map } from 'rxjs';
 import { CarBrowserService } from '../../core/services/CarBrowserService';
 import { GlobalComponentTools } from 'src/app/core/abstraction/GlobalComponentTools';
 import { ICarModel, IIdAndName } from 'src/app/core/interfaces';
+import { ICarModelGetFilter } from 'src/app/core/interfaces/ICarModelGetFilter';
+import { ICarModelsResponseData } from '../../core/interfaces/ICarMOdelsResponseData';
 
 @Component({
   selector: 'app-car-list',
@@ -12,11 +14,14 @@ import { ICarModel, IIdAndName } from 'src/app/core/interfaces';
 })
 export class CarListComponent extends GlobalComponentTools implements OnInit {
   public brands$!: Observable<IIdAndName[]>;
-  public models$!: Observable<ICarModel[]>;
+  public models!: ICarModelsResponseData;
 
-  private _models!: ICarModel[];
+  private _modelsRequest: ICarModelGetFilter = {
+    pageIndex: 1,
+    pageSize: 10
+  };
 
-  constructor(private readonly _carBrowserService: CarBrowserService) {
+  constructor(private readonly _carBrowserService: CarBrowserService, private readonly _cdr: ChangeDetectorRef) {
     super();
   }
 
@@ -27,18 +32,39 @@ export class CarListComponent extends GlobalComponentTools implements OnInit {
       })
       );
 
-    this.models$ = this.getModels();
+    this.getCarModels();
   }
 
-  public filterByBrand(id: number): void {
-    this.models$ = this.getModels(id);
+  public get pageIndex(): number {
+    return this._modelsRequest.pageIndex
   }
 
-  private getModels(id?: number): Observable<ICarModel[]> {
-    const apiCall$ = id && id > 0 ? this._carBrowserService.getModelsByBrand(id) : this._carBrowserService.getModelsList();
-    return this._models && (id === undefined) ? of(this._models) : apiCall$.pipe(tap(res => {
-      this._models = res;
-    }));
+  public get pageSize(): number {
+    return this._modelsRequest.pageSize;
+  }
+
+  // public filterByBrand(id: number): void {
+  //   this.models$ = this.getModels(id);
+  // }
+
+  public pageIndexChange(index: number): void {
+    this._modelsRequest.pageIndex = index;
+
+    this.getCarModels();
+  }
+
+  public pageSizeChangeHandler(size: number): void {
+    this._modelsRequest.pageSize = size;
+
+    this.getCarModels();
+  }
+
+  private getCarModels(): void {
+    this._carBrowserService.getModelsList(this._modelsRequest).subscribe(res => {
+      this.models = res;
+
+      this._cdr.detectChanges();
+    })
   }
 
 }

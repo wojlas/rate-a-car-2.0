@@ -1,0 +1,19 @@
+<div class="pagination-container">
+  <div class="pagination-container__page-size aligned-container">
+    <div
+      class="pagination-container__page-size__option c-pointer"
+      *ngFor="let option of pageSizesList"
+      (click)="changePageSizeChange(option)"
+    >
+      {{ option }}
+    </div>
+  </div>
+  <div class="pagination-container__pages-list aligned-container">
+    <div
+      class="pagination-container__pages-list__option"
+      *ngFor="let page of pagesList"
+      (click)="togglePage(page)"
+    >{{ page }}</div>
+  </div>
+  <div class="pagination-container__info aligned-container">{{ fullResultCount }}</div>
+</div>
