@@ -4,6 +4,7 @@ import { LoaderComponent } from './loader/loader.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { CoreModule } from '../core/core.module';
 
 
 
@@ -14,7 +15,8 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    CoreModule
   ],
   exports: [
     LoaderComponent,

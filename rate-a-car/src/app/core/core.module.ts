@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { 
   EmptyDashPipe,
   FilterByPipe,
+  LastElementPipe,
   MapPropertyPipe,
   SortByPipe
 } from './pipes';
@@ -14,7 +15,8 @@ import {
     SortByPipe,
     EmptyDashPipe,
     FilterByPipe,
-    MapPropertyPipe
+    MapPropertyPipe,
+    LastElementPipe
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import {
     SortByPipe,
     EmptyDashPipe,
     FilterByPipe,
-    MapPropertyPipe
+    MapPropertyPipe,
+    LastElementPipe
   ]
 })
 export class CoreModule { }

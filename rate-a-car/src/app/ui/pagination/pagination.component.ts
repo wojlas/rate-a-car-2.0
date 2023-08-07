@@ -26,6 +26,7 @@ export class PaginationComponent extends ValueAccessorBase<number> implements Co
   @Output() pageSizeListChange = new EventEmitter<number>();
 
   public pagesList: number[] = [];
+  public currentIndex = 1;
 
   private _fullResultsCount!: number;
 
@@ -45,6 +46,11 @@ export class PaginationComponent extends ValueAccessorBase<number> implements Co
 
   public togglePage(index: number): void {
     this.propagateChanges(index);
+    this.currentIndex = index;
+  }
+
+  public setLastPage(): void {
+    this.togglePage(this.pagesList.lastElement());
   }
 
   private generatePagesList(): void {
