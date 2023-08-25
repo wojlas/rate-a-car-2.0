@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation, forwardRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation, forwardRef, signal } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ValueAccessorBase } from 'src/app/core/abstraction/ValueAccessorBase';
 
@@ -26,8 +26,8 @@ export class PaginationComponent extends ValueAccessorBase<number> implements Co
   @Output() pageSizeListChange = new EventEmitter<number>();
 
   public pagesList: number[] = [];
-  public currentIndex = 1;
-
+  
+  private _currentIndex = signal(1);
   private _fullResultsCount!: number;
 
   public ngAfterViewInit(): void {
@@ -40,13 +40,18 @@ export class PaginationComponent extends ValueAccessorBase<number> implements Co
     return this._fullResultsCount;
   }
 
+  public get currentIndex(): number {
+    return this._currentIndex();
+  }
+
   public changePageSizeChange(size: number): void {
     this.pageSizeListChange.emit(size);
+    this._currentIndex.set(1);
   }
 
   public togglePage(index: number): void {
     this.propagateChanges(index);
-    this.currentIndex = index;
+    this._currentIndex.set(index);
   }
 
   public setLastPage(): void {

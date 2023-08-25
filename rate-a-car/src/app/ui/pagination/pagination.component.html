@@ -3,121 +3,46 @@
     <div
       class="pagination-container__page-size__option c-pointer"
       *ngFor="let option of pageSizesList"
+      [ngClass]="{ 'selected': option === pageSize }"
       (click)="changePageSizeChange(option)"
     >
       {{ option }}
     </div>
   </div>
   <div class="pagination-container__pages-list aligned-container">
-    <ng-container *ngIf="pagesList.length <= 3" [ngTemplateOutlet]="shortList"></ng-container>
-    <ng-container *ngIf="pagesList.length > 3" [ngTemplateOutlet]="longerList"></ng-container>
+    <div
+     class="pagination-container__pages-list__option c-pointer"
+     *ngIf="currentIndex > 1"
+     (click)="togglePage(1)"
+    >1</div>
+    <div
+     class="pagination-container__pages-list__option"
+     *ngIf="currentIndex > 3"
+    >...</div>
+    <div
+     class="pagination-container__pages-list__option c-pointer"
+     *ngIf="currentIndex > 2"
+     (click)="togglePage(currentIndex - 1)"
+    >{{ currentIndex - 1 }}</div>
+    <div
+     class="pagination-container__pages-list__option c-pointer selected"
+     (click)="togglePage(currentIndex)"
+    >{{ currentIndex }}</div>
+    <div
+     class="pagination-container__pages-list__option c-pointer"
+     *ngIf="currentIndex !== pagesList[pagesList.length - 1] && fullResultCount > pageSize"
+     (click)="togglePage(currentIndex + 1)"
+    >{{ currentIndex + 1 }}</div>
+    <div
+     class="pagination-container__pages-list__option"
+     *ngIf="pagesList[pagesList.length - 1] - currentIndex > 2"
+    >...</div>
+    <div
+     class="pagination-container__pages-list__option c-pointer"
+     *ngIf="pagesList[pagesList.length - 1] - currentIndex > 1"
+     (click)="setLastPage()"
+    >Wszystkich wyników: {{ pagesList[pagesList.length - 1] }}</div>
   </div>
     
   <div class="pagination-container__info aligned-container c-default">{{ fullResultCount }}</div>
 </div>
-
-<ng-template #shortList>
-  <div
-  class="pagination-container__pages-list__option c-pointer {{ currentIndex === page ? 'selected' : '' }}"
-  *ngFor="let page of pagesList"
-  (click)="togglePage(page)"
-  >{{ page }}</div>
-</ng-template>
-
-<ng-template #longerList>
-  <ng-container *ngIf="pagesList.length < 10 && currentIndex < 3">
-    <div
-      class="pagination-container__pages-list__option c-pointer {{ currentIndex === page ? 'selected' : '' }}"
-      *ngFor="let page of [1, 2, 3]"
-      (click)="togglePage(page)"
-    >{{ page }}</div>
-    <span class="c-default">...</span>
-    <div
-      class="pagination-container__pages-list__option c-pointer {{ currentIndex === pagesList.length ? 'selected' : '' }}"
-      (click)="setLastPage()"
-    >{{ pagesList | lastElement }}</div>
-  </ng-container>
-  <ng-container *ngIf="pagesList.length < 10 && currentIndex >= 3 && pagesList.length - currentIndex >= 3">
-    <div
-      class="pagination-container__pages-list__option c-pointer {{ currentIndex === pagesList[0] ? 'selected' : '' }}"
-      (click)="togglePage(pagesList[0])"
-    >{{ pagesList[0] }}</div>
-    <span class="c-default" *ngIf="currentIndex !== 3">...</span>
-    <div
-      class="pagination-container__pages-list__option c-pointer"
-      (click)="togglePage(currentIndex - 1)"
-    >{{ currentIndex - 1 }}</div>
-    <div
-      class="pagination-container__pages-list__option c-pointer selected"
-      (click)="togglePage(currentIndex)"
-    >{{ currentIndex }}</div>
-    <div
-      class="pagination-container__pages-list__option c-pointer"
-      *ngIf="pagesList.length > currentIndex + 1"
-      (click)="togglePage(currentIndex + 1)"
-      >{{ currentIndex + 1 }}</div>
-    <span class="c-default" *ngIf="pagesList.length - currentIndex > 2">...</span>
-    <div
-      class="pagination-container__pages-list__option c-pointer {{ currentIndex === pagesList.length ? 'selected' : '' }}"
-      *ngIf="currentIndex !== pagesList.length"
-       (click)="setLastPage()"
-    >{{ pagesList | lastElement }}</div>
-  </ng-container>
-  <ng-container *ngIf="pagesList.length < 10 && pagesList.length - currentIndex < 3">
-    <div
-      class="pagination-container__pages-list__option c-pointer"
-      (click)="togglePage(pagesList[0])"
-    >{{ pagesList[0] }}</div>
-    <span class="c-default">...</span>
-    <div
-     class="pagination-container__pages-list__option c-pointer {{ currentIndex === pagesList.length - 3 ? 'selected' : '' }}"
-     *ngIf="currentIndex === pagesList.length - 2"
-     (click)="togglePage(pagesList.length - 3)"
-    >{{ pagesList.length - 3 }}</div>
-    <div
-     class="pagination-container__pages-list__option c-pointer {{ currentIndex === pagesList.length - 2 ? 'selected' : '' }}"
-     (click)="togglePage(pagesList.length - 2)"
-    >{{ pagesList.length - 2 }}</div>
-    <div
-     class="pagination-container__pages-list__option c-pointer {{ currentIndex === pagesList.length - 1 ? 'selected' : '' }}"
-     (click)="togglePage(pagesList.length - 1)"
-    >{{ pagesList.length - 1 }}</div>
-    <div
-     class="pagination-container__pages-list__option c-pointer {{ currentIndex === pagesList.length ? 'selected' : '' }}"
-     (click)="togglePage(pagesList.length)"
-    >{{ pagesList.length }}</div>
-  </ng-container>
-  <ng-container *ngIf="pagesList.length >= 10">
-    <div
-      class="pagination-container__pages-list__option c-pointer"
-      *ngIf="currentIndex > 2"
-      (click)="togglePage(1)"
-    >1</div>
-    <span class="c-default" *ngIf="currentIndex > 3">...</span>
-    <div
-      class="pagination-container__pages-list__option c-pointer"
-      *ngIf="currentIndex === pagesList.length"
-      (click)="togglePage(currentIndex - 2)"
-    >{{ currentIndex - 2 }}</div>
-    <div
-      class="pagination-container__pages-list__option c-pointer"
-      *ngIf="currentIndex - 1 > 0"
-      (click)="togglePage(currentIndex - 1)"
-    >{{ currentIndex - 1 }}</div>
-    <div
-      class="pagination-container__pages-list__option c-pointer selected"
-      (click)="togglePage(currentIndex)"
-    >{{ currentIndex }}</div>
-    <div
-      class="pagination-container__pages-list__option c-pointer"
-      *ngIf="currentIndex + 1 < pagesList.length"
-      (click)="togglePage(currentIndex + 1)"
-    >{{ currentIndex + 1 }}</div>
-    <span class="c-default" *ngIf="pagesList.length - currentIndex > 2">...</span>
-    <div
-      class="pagination-container__pages-list__option c-pointer"
-      *ngIf="currentIndex + 1 <= pagesList.length"
-      (click)="setLastPage()"
-    >{{ pagesList | lastElement }}</div>
-  </ng-container>
-</ng-template>

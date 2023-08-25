@@ -29,7 +29,6 @@ class GetCarModels(APIView):
     def post(self, request, format=None):
       page_index = request.data.get('pageIndex', 1)
       page_size = request.data.get('pageSize', 20)
-      # page_size = 3
 
       start_index = (page_index - 1) * page_size
       end_index = page_index * page_size
