@@ -1,0 +1,18 @@
+<div class="d-flex flex-row flex-nowrap align-items-end pt-8 pl-4">
+  <div class="logo">
+    <img
+     class="w-100"
+     src="./../../../assets/static/rac.png"
+     alt="RATE A CAR LOGO"
+     width="200px"
+     height="100px"
+    >
+  </div>
+  <div class="menu d-flex flex-row flex-nowrap align-items-center justify-content-end w-100 ml-12">
+    <div
+    *ngFor="let item of mainMenuItems | filter: 'isVisible'"
+     class="menu-item w-100 flex-nowrap cursor-pointer blue-primary f-white d-flex align-items-center justify-content-center py-8"
+     [routerLink]="item.path"
+    >{{ item.title }}</div>
+  </div>
+</div>

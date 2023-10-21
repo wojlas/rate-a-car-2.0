@@ -1,0 +1,10 @@
+.logo {
+  flex: 0 0 15%;
+  min-width: 85px;
+}
+
+.menu-item {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
