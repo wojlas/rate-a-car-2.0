@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgSwitch, NgSwitchDefault, NgSwitchCase } from '@angular/common';
 
 @Component({
     selector: 'app-root',
-    templateUrl: './app.component.html',
+    template: '<router-outlet></router-outlet>',
     styleUrls: ['./app.component.scss'],
     standalone: true,
-    imports: [NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet]
+    imports: [NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
-  title = 'rate-a-car';
+  title = 'Rate a car';
 }

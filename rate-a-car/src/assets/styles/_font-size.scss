@@ -1,0 +1,5 @@
+$values: 14, 16, 22, 24, 26;
+
+@each $value in $values {
+  .f-#{ $value } { font-size: #{ $value }px }
+}
