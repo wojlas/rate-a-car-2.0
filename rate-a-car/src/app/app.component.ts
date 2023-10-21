@@ -4,7 +4,7 @@ import { NgSwitch, NgSwitchDefault, NgSwitchCase } from '@angular/common';
 
 @Component({
     selector: 'app-root',
-    template: '<router-outlet></router-outlet>',
+    templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
     standalone: true,
     imports: [NgSwitch, NgSwitchDefault, NgSwitchCase, RouterOutlet],

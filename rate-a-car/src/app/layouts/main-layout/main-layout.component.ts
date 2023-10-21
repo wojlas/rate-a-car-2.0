@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NavigationComponent } from 'src/app/global/navigation/navigation.component';
+import { NavigationComponent } from 'src/app/global/components/navigation/navigation.component';
 
 @Component({
   selector: 'app-main-layout',
