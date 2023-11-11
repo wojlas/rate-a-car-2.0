@@ -5,6 +5,8 @@ import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { rateACarInterceptor } from './app/core/interceptors';
 
+import './app/core/extensions/array-extensions';
+
 
 bootstrapApplication(AppComponent, {
     providers: [

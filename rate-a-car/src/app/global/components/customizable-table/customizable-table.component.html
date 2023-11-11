@@ -1,24 +1,20 @@
 <table class="table w-100 h-100">
   <thead>
     <tr>
-      <td
-       *ngFor="let column of tableHeader | sortBy: 'position'"
-       [style.width.px]="column.width"
-      >
-        {{ column.label }}
-      </td>
+      @for (column of tableHeader | sortBy: 'position'; track column.id) {
+        <td [style.width.px]="column.width">{{ column.label }}</td>
+      }
     </tr>
   </thead>
   <tbody>
-    <tr
-      *ngFor="let model of tableBodyList"
-    >
-      <td
-        *ngFor="let column of tableHeader | sortBy: 'position'"
-        [style.width.px]="column.width"
-      >
-        {{ model[column.property] }}
-      </td>
-    </tr>
+    @for (model of tableBodyList; track model.id) {
+      <tr>
+        @for (column of tableHeader | sortBy: 'position'; track column.id) {
+          <td [style.width.px]="column.width">{{ (model[column.property]?.name ?? model[column.property]) | emptyDash }}</td>
+        }
+      </tr>
+    } @empty {
+      <span>Brak danych</span>
+    }
   </tbody>
 </table>

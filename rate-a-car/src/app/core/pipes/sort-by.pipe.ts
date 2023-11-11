@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SortByPipe implements PipeTransform {
 
-  transform<T>(value: T[], key: string): T[] {
+  transform(value: any[], key: string): any[] {
     return value.sortByKey(key);
   }
 }
