@@ -9,6 +9,7 @@ import { ActivatedRoute, RouterOutlet } from '@angular/router';
     standalone: true,
     templateUrl: './car-landing.component.html',
     styleUrls: ['./car-landing.component.scss'],
+    host: { class: 'w-100' },
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [CommonModule, FiltersComponent, BrandListComponent, RouterOutlet]
 })

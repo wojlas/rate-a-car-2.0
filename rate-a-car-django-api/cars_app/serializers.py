@@ -8,14 +8,15 @@ class BrandSerializer(serializers.ModelSerializer):
 
 class CarModelsSerializer(serializers.ModelSerializer):
     brand = serializers.SerializerMethodField()
+    productionFrom = serializers.IntegerField(source='production_from')
+    productionTo = serializers.IntegerField(source='production_to')
 
     class Meta:
         model = CarModel
-        fields = ['id', 'name', 'version', 'production_from', 'production_to', 'rate', 'brand']
+        fields = ['id', 'name', 'version', 'rate', 'brand', 'productionFrom', 'productionTo']
 
     def get_brand(self, obj):
         return {
             'id': obj.brand.id,
             'name': obj.brand.name
         }
-

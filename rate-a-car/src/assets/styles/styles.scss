@@ -5,13 +5,21 @@
 @import './overflow';
 @import './colors';
 
+html, body, app-route {
+  width: 100%;
+  height: 100%;
+}
+
 body {
   margin: 0 !important;
   padding: 0 !important;
 }
 
-body > * {
-  box-sizing: border-box !important;
+body {
+
+  * {
+    box-sizing: border-box !important;
+  }
 }
 
 .cursor-pointer {

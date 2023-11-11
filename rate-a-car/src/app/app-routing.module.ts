@@ -4,7 +4,7 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
 import { LandingPageComponent } from './main/landing-page/landing-page.component';
 import { CarLandingComponent } from './car-browser/layouts/car-landing/car-landing.component';
 import { CarsTableComponent } from './car-browser/ui/cars-table/cars-table.component';
-import { brandListResolver } from './car-browser/core/resolvers';
+import { brandListResolver, carsListResolver } from './car-browser/core/resolvers';
 
 const routes: Routes = [
   {
@@ -23,6 +23,7 @@ const routes: Routes = [
           {
             path: '',
             component: CarsTableComponent,
+            resolve: { data: carsListResolver }
           }
         ]
       }

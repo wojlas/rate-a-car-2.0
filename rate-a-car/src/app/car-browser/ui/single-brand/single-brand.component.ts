@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { IIdAndName } from 'src/app/core/interfaces';
 
 @Component({
   selector: 'app-single-brand',
@@ -10,6 +11,12 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SingleBrandComponent {
-  @Input() brand!: any;
+  @Input() set brand(brand: IIdAndName) {
+    if (brand) {
+      this.brandName.set(brand.name);
+    }
+  }
+
+  public brandName = signal<string>('');
 
 }
