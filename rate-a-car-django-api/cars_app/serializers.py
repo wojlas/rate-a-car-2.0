@@ -20,3 +20,4 @@ class CarModelsSerializer(serializers.ModelSerializer):
             'id': obj.brand.id,
             'name': obj.brand.name
         }
+    

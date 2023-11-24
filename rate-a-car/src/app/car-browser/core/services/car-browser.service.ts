@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, tap } from 'rxjs';
-import { ICarListResponse, ICarModelListRequest } from '../interfaces';
+import { ICarDetails, ICarListResponse, ICarModelListRequest } from '../interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +21,7 @@ export class CarBrowserService {
     return this._api.post<ICarListResponse>('cars/models/', request);
   }
 
-  public getCarModelDetails(id: number): Observable<unknown> {
-    return this._api.get(`cars/model/${ id }`);
+  public getCarModelDetails(id: number): Observable<ICarDetails> {
+    return this._api.get<ICarDetails>(`cars/model/${ id }`);
   }
 }
