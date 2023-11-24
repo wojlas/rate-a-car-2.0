@@ -17,15 +17,7 @@ const routes: Routes = [
       },
       {
         path: 'cars',
-        component: CarLandingComponent,
-        resolve: { data: brandListResolver },
-        children: [
-          {
-            path: '',
-            component: CarsTableComponent,
-            resolve: { data: carsListResolver }
-          }
-        ]
+        loadChildren: () => import('../app/car-browser/car-browser-routing.module').then(m => m.routes)
       }
     ],
   },

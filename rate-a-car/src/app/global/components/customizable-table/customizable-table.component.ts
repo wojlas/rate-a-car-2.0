@@ -2,11 +2,12 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ITableHeader } from '../../core/interfaces';
 import { EmptyDashPipe, SortByPipe } from 'src/app/core/pipes';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-customizable-table',
   standalone: true,
-  imports: [CommonModule, SortByPipe, EmptyDashPipe],
+  imports: [CommonModule, SortByPipe, EmptyDashPipe, RouterLink],
   templateUrl: './customizable-table.component.html',
   styleUrls: ['./customizable-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

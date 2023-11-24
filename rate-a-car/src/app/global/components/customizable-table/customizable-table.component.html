@@ -1,8 +1,11 @@
-<table class="table w-100 h-100">
+<table class="customizable-table w-100 h-100">
   <thead>
     <tr>
       @for (column of tableHeader | sortBy: 'position'; track column.id) {
-        <td [style.width.px]="column.width">{{ column.label }}</td>
+        <td
+        class="px-8 py-12 b-light-blue"
+         [style.width.px]="column.width"
+        >{{ column.label }}</td>
       }
     </tr>
   </thead>
@@ -10,7 +13,12 @@
     @for (model of tableBodyList; track model.id) {
       <tr>
         @for (column of tableHeader | sortBy: 'position'; track column.id) {
-          <td [style.width.px]="column.width">{{ (model[column.property]?.name ?? model[column.property]) | emptyDash }}</td>
+          <td
+            [routerLink]="model.id"
+            routerLinkActive="router-link-active" 
+            class="p-8 cursor-pointer"
+            [style.width.px]="column.width"
+          >{{ (model[column.property]?.name ?? model[column.property]) | emptyDash }}</td>
         }
       </tr>
     } @empty {

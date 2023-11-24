@@ -20,4 +20,8 @@ export class CarBrowserService {
   public getCarModelsList(request: ICarModelListRequest): Observable<ICarListResponse> {
     return this._api.post<ICarListResponse>('cars/models/', request);
   }
+
+  public getCarModelDetails(id: number): Observable<unknown> {
+    return this._api.get(`cars/model/${ id }`);
+  }
 }

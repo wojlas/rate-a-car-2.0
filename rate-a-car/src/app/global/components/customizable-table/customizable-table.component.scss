@@ -1,0 +1,21 @@
+.customizable-table {
+  thead, tbody {
+    td {
+      text-align: center;
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid lightgray;
+
+      &:last-of-type {
+        border-bottom: none;
+      }
+
+      &:hover {
+        background-color: lightblue;
+      }
+    }
+  }
+}
