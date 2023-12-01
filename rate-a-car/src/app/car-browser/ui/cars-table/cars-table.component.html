@@ -1,6 +1,9 @@
-<div class="d-flex w-100 h-100">
+<div class="d-flex flex-column w-100 h-100 justify-content-between">
   <app-customizable-table
     [tableHeader]="tableHeader()"
     [tableBodyList]="models"
-  ></app-customizable-table>
+  />
+  <app-pagination
+    [fullAmountOfElements]="fullCount()"
+  />
 </div>

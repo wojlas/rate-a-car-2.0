@@ -4,11 +4,12 @@ import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { ICarModel } from '../../core/interfaces';
 import { CustomizableTableComponent } from 'src/app/global/components/customizable-table/customizable-table.component';
 import { ITableHeader } from 'src/app/global/core/interfaces';
+import { PaginationComponent } from 'src/app/global/components/pagination/pagination.component';
 
 @Component({
   selector: 'app-cars-table',
   standalone: true,
-  imports: [CommonModule, CustomizableTableComponent],
+  imports: [CommonModule, CustomizableTableComponent, PaginationComponent],
   templateUrl: './cars-table.component.html',
   styleUrls: ['./cars-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -73,6 +74,8 @@ export class CarsTableComponent {
     ]
   );
 
+  public readonly fullCount = signal<number>(0);
+
   private readonly _models = signal<ICarModel[]>([]);
 
   public constructor(
@@ -80,6 +83,7 @@ export class CarsTableComponent {
   ) {
     _activatedRoute.data.subscribe(({ data }) => {
       this._models.set(data.carModels);
+      this.fullCount.set(data.totalCount);
     });
   }
 

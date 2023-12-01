@@ -1,1 +1,15 @@
-<p>pagination works!</p>
+<div class="pagination d-flex flex-row align-items-center justify-content-between w-100 p-16">
+  <div class="pagination__full-count d-flex align-items-center justify-content-center px-8 cursor-default">
+    <span>{{ fullCountSignal() | emptyString }}</span>
+  </div>
+  <div class="pagination__pages d-flex flex-row align-items-center justify-content-center px-8 gap-8">
+    @for (page of pages(); track $index) {
+      <span class="cursor-pointer pagination-item">{{ page }}</span>
+    }
+  </div>
+  <div class="pagination__page-sizes d-flex flex-row align-items-center justify-content-end px-8 gap-8">
+    @for (size of pageSizes; track $index) {
+      <span class="cursor-pointer pagination-item" [ngClass]="{ 'selected': size === pageSizeSignal() }">{{ size }}</span>
+    }
+  </div>
+</div>
