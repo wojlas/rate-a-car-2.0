@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ICarModel } from '../../core/interfaces';
 import { CustomizableTableComponent } from 'src/app/global/components/customizable-table/customizable-table.component';
 import { ITableHeader } from 'src/app/global/core/interfaces';

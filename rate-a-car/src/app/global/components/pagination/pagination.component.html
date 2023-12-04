@@ -1,15 +1,37 @@
 <div class="pagination d-flex flex-row align-items-center justify-content-between w-100 p-16">
   <div class="pagination__full-count d-flex align-items-center justify-content-center px-8 cursor-default">
-    <span>{{ fullCountSignal() | emptyString }}</span>
+    @if (fullCountSignal() !== 0) {
+      <span>{{ fullCountSignal() }} wynik{{ fullCountSignal() > 1 ? 'ów' : '' }}</span>
+    }
   </div>
   <div class="pagination__pages d-flex flex-row align-items-center justify-content-center px-8 gap-8">
-    @for (page of pages(); track $index) {
-      <span class="cursor-pointer pagination-item">{{ page }}</span>
+    @if (currentPage > 2) {
+      <div class="cursor-pointer pagination-item" (click)="setPageIndex(1)">1</div>
+      @if (currentPage > 1) {
+        <div class="cursor-default three-dots px-4">...</div>
+      }
+    }
+    @if (currentPage - 1 >= 1) {
+      <div class="cursor-pointer pagination-item" (click)="setPageIndex(currentPage - 1)">{{ currentPage -1 }}</div>
+    }
+    
+    <div class="cursor-pointer pagination-item selected">{{ currentPage }}</div>
+    
+    @if (currentPage + 1 <= pages().length) {
+      <div class="cursor-pointer pagination-item" (click)="setPageIndex(currentPage + 1)">{{ currentPage + 1 }}</div>
+    }
+    @if (currentPage + 1 < pages().length) {
+      <div class="cursor-default three-dots px-4">...</div>
+      <div class="cursor-pointer pagination-item" (click)="setPageIndex(pages().lastElement())">{{ pages() | lastElement }}</div>
     }
   </div>
   <div class="pagination__page-sizes d-flex flex-row align-items-center justify-content-end px-8 gap-8">
     @for (size of pageSizes; track $index) {
-      <span class="cursor-pointer pagination-item" [ngClass]="{ 'selected': size === pageSizeSignal() }">{{ size }}</span>
+      <span
+        class="cursor-pointer pagination-item"
+        [ngClass]="{ 'selected': size === pageSizeSignal() }"
+        (click)="setListSize(size)"
+      >{{ size }}</span>
     }
   </div>
 </div>
