@@ -16,10 +16,11 @@ import { ActivatedRoute, RouterOutlet } from '@angular/router';
 export class CarLandingComponent {
     public brandList: any[] = [];
 
-    public constructor(private readonly _activatedRoute: ActivatedRoute) {
+    public constructor(
+        private readonly _activatedRoute: ActivatedRoute,
+    ) {
         _activatedRoute.data.subscribe(({ data }) => {
             this.brandList = data;
         });
     }
-
 }

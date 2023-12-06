@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, tap } from 'rxjs';
-import { ICarDetails, ICarListResponse, ICarModelListRequest } from '../interfaces';
+import { ICarDetails, ICarListResponse } from '../interfaces';
+import { ICarModelListRequest } from 'src/app/core/interfaces';
 
 @Injectable({
   providedIn: 'root',

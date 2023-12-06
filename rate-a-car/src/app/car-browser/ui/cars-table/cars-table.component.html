@@ -3,7 +3,12 @@
     [tableHeader]="tableHeader()"
     [tableBodyList]="models"
   />
-  <app-pagination
-    [fullAmountOfElements]="fullCount()"
-  />
+  @if (searchModel()) {
+    <app-pagination
+      [currentPage]="searchModel().pageIndex"
+      [pageSize]="searchModel().pageSize"
+      [fullAmountOfElements]="fullCount()"
+      (paginationChanged)="paginationChanged($event)"
+    />
+  }
 </div>

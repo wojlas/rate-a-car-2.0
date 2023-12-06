@@ -44,6 +44,7 @@ export class PaginationComponent {
   public setListSize(size: number) {
     if (size !== this.pageSizeSignal()) {
       this.pageSizeSignal.set(size);
+      this.currentPage = 1;
       this.emitChanges();
     }
   }
