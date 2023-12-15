@@ -4,6 +4,7 @@
 @import './spacing';
 @import './overflow';
 @import './colors';
+@import './elements';
 
 html, body, app-route {
   width: 100%;
@@ -37,4 +38,13 @@ body {
 table {
   border-spacing: 0;
   border-collapse: collapse;
+}
+
+.filter-label {
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  color: black !important;
+  pointer-events: none;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }

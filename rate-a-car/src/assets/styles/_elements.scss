@@ -1,0 +1,42 @@
+input.custom-input {
+  padding: 4px 8px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  font-size: 20px;
+  line-height: 24px;
+  font-family: Roboto;
+  outline: none !important;
+
+  &.ng-invalid {
+    border-color: red;
+  }
+
+  &:focus, &:active, &:focus-within {
+    border-color: gray;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+button.button-primary {
+  padding: 4px 8px;
+  background-color: #2980B9;
+  border: 1px solid #2471A3;
+  border-width: 0;
+  border-radius: 4px;
+  outline: none !important;
+  cursor: pointer;
+  line-height: 24px;
+  font-family: serif;
+  font-weight: bold;
+  color: white;
+
+  &:active {
+    background-color: #2471A3;
+    border: 2px #2471A3 
+  }
+}

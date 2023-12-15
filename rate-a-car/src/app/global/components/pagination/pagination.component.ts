@@ -23,7 +23,7 @@ export class PaginationComponent {
   @Input() currentPage = 0;
   @Input() set fullAmountOfElements(val: number) {
 
-    if (val) {
+    if (val >= 0) {
       this.fullCountSignal.set(val);
       this.generatePages();
     }
@@ -50,7 +50,8 @@ export class PaginationComponent {
   }
 
   private generatePages(): void {
-    const length = Math.round(this.fullCountSignal() / this.pageSizeSignal());
+    const length = Math.ceil(this.fullCountSignal() / this.pageSizeSignal());
+    
     this.pages.set(Array.from({ length }, (_, i) => i + 1));    
   }
 

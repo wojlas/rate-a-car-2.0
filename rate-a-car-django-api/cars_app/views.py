@@ -38,7 +38,7 @@ class GetCarModels(APIView):
         query = Q()
 
         if "searchTerm" in filters and filters["searchTerm"]:
-          query &= Q(name__incontains=filters["searchTerm"])
+          query &= Q(name__iexact=filters["searchTerm"])
 
         if "brandIds" in filters and filters["brandIds"]:
            query &= Q(brand__in=filters["brandIds"])

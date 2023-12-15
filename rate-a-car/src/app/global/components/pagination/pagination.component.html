@@ -1,6 +1,6 @@
 <div class="pagination d-flex flex-row align-items-center justify-content-between w-100 p-16">
   <div class="pagination__full-count d-flex align-items-center justify-content-center px-8 cursor-default">
-    @if (fullCountSignal() !== 0) {
+    @if (fullCountSignal() >= 0) {
       <span>{{ fullCountSignal() }} wynik{{ fullCountSignal() > 1 ? 'ów' : '' }}</span>
     }
   </div>

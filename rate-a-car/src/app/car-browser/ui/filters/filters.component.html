@@ -1,1 +1,26 @@
-<p>filters works!</p>
+<div class="d-flex flex-column w-100 p-12">
+  <form class="d-flex flex-column gap-8" [formGroup]="filterForm" (ngSubmit)="apply()">
+    <div class="d-flex flex-column justify-content-start w-100 g-8">
+      <label class="filter-label" for="searchTerm">Model</label>
+      <input class="custom-input" name="searchTerm" formControlName="searchTerm">
+    </div>
+    <div class="d-flex flex-column justify-content-start w-100 g-8">
+      <label class="filter-label" for="productionFrom">Produkowany od</label>
+      <input type="number" min="1900" max="2023" class="custom-input" name="productionFrom" formControlName="productionFrom">
+    </div>
+    <div class="d-flex flex-column justify-content-start w-100 g-8">
+      <label class="filter-label" for="productionTo">Produkowany do</label>
+      <input type="number" min="1900" max="2023" class="custom-input" name="productionTo" formControlName="productionTo">
+    </div>
+    <div class="d-flex flex-column justify-content-start w-100 g-8">
+      <label class="filter-label" for="rateFrom">Ocena od</label>
+      <input type="number" class="custom-input" name="rateFrom" formControlName="rateFrom">
+    </div>
+    <div class="d-flex flex-column justify-content-start w-100 g-8">
+      <label class="filter-label" for="rateTo">Ocena do</label>
+      <input type="number" class="custom-input" name="rateTo" formControlName="rateTo">
+    </div>
+
+    <button type="submit" class="button-primary w-100">Szukaj</button>
+  </form>
+</div>
