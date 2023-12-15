@@ -4,5 +4,5 @@ export interface ICarModelListRequestFilters {
   productionTo?: number;
   rateFrom?: number;
   rateTo?: number;
-  brandIds?: number[];
+  brandIds: number[];
 }

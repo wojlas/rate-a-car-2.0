@@ -1,6 +1,7 @@
 <div class="d-flex flex-column gap-8 align-items-center justify-content-center">
   @for (brand of list; track $index) {
     <app-single-brand
+      class="w-100"
       [brand]="brand"
     />
   }

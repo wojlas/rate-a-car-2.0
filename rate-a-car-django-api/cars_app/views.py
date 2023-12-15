@@ -1,9 +1,10 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.db.models import Q
 
-from .serializers import BrandSerializer, CarModelsSerializer
+from .serializers import CarModelsSerializer, BrandSerializer
 
-from .models import Brand, CarModel
+from .models import CarModel, Brand
 from rateACarApi.global_methods import throw200, throw400, throw500
 
 class BrandView(APIView):
@@ -29,21 +30,30 @@ class GetCarModels(APIView):
     def post(self, request, format=None):
       page_index = request.data.get('pageIndex', 1)
       page_size = request.data.get('pageSize', 20)
+      filters = request.data.get('filters', {})
 
       start_index = (page_index - 1) * page_size
       end_index = page_index * page_size
       try:
-         query = CarModel.objects.all()[start_index:end_index]
-         total_count = CarModel.objects.count()
+        query = Q()
 
-         serializer = CarModelsSerializer(query, many=True)
+        if "searchTerm" in filters and filters["searchTerm"]:
+          query &= Q(name__incontains=filters["searchTerm"])
 
-         response_data = {
-            'carModels': serializer.data,
-            'totalCount': total_count
-         }
+        if "brandIds" in filters and filters["brandIds"]:
+           query &= Q(brand__in=filters["brandIds"])
 
-         return Response(response_data, status=throw200())
+        filtered_values = CarModel.objects.filter(query)[start_index:end_index]
+        total_count = CarModel.objects.filter(query).count()
+
+        serializer = CarModelsSerializer(filtered_values, many=True)
+
+        response_data = {
+          'carModels': serializer.data,
+          'totalCount': total_count
+        }
+
+        return Response(response_data, status=throw200())
          
       except CarModel.DoesNotExist:
          return Response(serializer.errors, status=throw500())

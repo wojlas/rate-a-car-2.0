@@ -12,7 +12,8 @@ export class CarBrowserStoreService {
       pageIndex: 1,
       pageSize: 20,
       filters: {
-        searchTerm: ''
+        searchTerm: '',
+        brandIds: []
       }
     }
   );

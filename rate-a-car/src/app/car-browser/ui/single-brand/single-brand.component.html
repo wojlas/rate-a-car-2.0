@@ -1,3 +1,7 @@
-<div class="d-flex align-items-center justify-content-center px-12 py-8">
-  {{ brandName() }}
+<div
+ class="d-flex align-items-center justify-content-center px-12 py-8 cursor-pointer"
+ [ngClass]="selected ? 'b-light-blue' : ''"
+ (click)="setCarBrandId()"
+>
+  {{ brandSignal().name }}
 </div>

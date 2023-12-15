@@ -11,7 +11,8 @@ export const carsListResolver: ResolveFn<ICarListResponse> = () => {
     pageIndex: 1,
     pageSize: 10,
     filters: {
-      searchTerm: ''
+      searchTerm: '',
+      brandIds: []
     }
   };
   

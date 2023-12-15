@@ -82,7 +82,10 @@ export class CarsTableComponent {
     {
       pageIndex: 1,
       pageSize: 20,
-      filters: { searchTerm: '' }
+      filters: {
+         searchTerm: '',
+         brandIds: []
+         }
     }
   );
   private _init = true;
